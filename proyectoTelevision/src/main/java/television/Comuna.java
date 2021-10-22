@@ -7,11 +7,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
-public class Comuna {
+public class Comuna implements Filtro {
     private String nombre;
     public boolean tieneClientes = false;
     private int cantidadCasas;
-    private int casasInscritas;
+    public int casasInscritas;
     private int oferta;
     private ArrayList<Cliente> clientes = new ArrayList<>();
 
@@ -286,10 +286,8 @@ public class Comuna {
                 }
                 case 0: break;
             }
-            
-            
     }
-    
+   @Override
     public void filtrarClientesPorCriterio(char letra){
         int i;
         char primeraLetra;
@@ -297,11 +295,12 @@ public class Comuna {
             primeraLetra = clientes.get(i).getNombre().charAt(0);
             if(primeraLetra == letra)
                 mostrarCliente(clientes.get(i).getRut());
-        }
-
+        }        
+               
     }
-
+    
     public int cantidadClientes(){
         return clientes.size();
     }
+
 }

@@ -1,0 +1,4 @@
+Pedro,32323323,calle margamarga 123,3
+Juannnnnnn,12312321321,No registra direccion.,1
+Rodrigo,20954999,No registra direccion.,1
+Mario,12312312,No registra direccion.,1

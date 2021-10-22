@@ -9,6 +9,8 @@ package television;
  *
  * @author rorro
  */
-public interface Filtro {
-    public void filtrarClientesPorCriterio(char letra);
+public abstract class Entidad {
+    String nombre;
+    String rut;
+    
 }

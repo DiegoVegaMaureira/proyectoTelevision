@@ -6,17 +6,16 @@
 package television;
 
 import java.util.HashMap;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 
 /**
  *
  * @author Diego
  */
-public class Region {
+public class Region implements Filtro{
     private int numero;
     public boolean tieneClientes = false;
     private String nombre;
-    private HashMap<Integer,Comuna> comunas = new HashMap<>();
+    private HashMap<Integer,Comuna> comunas = new HashMap<>(); // CAMBIAR A ARRAYLIST
     
     public Region(int num , String n){
         numero = num;
@@ -97,20 +96,20 @@ public class Region {
         for (i = 0 ; i < comunas.size() ; i++)
             this.comunas.get(i).generarReporte();
     }
-    
+    @Override
     public void filtrarClientesPorCriterio(char letra){
         int i;
         for (i = 0 ; i < comunas.size() ; i++)
             this.comunas.get(i).filtrarClientesPorCriterio(letra);
     }
-
+    
     public Comuna comunaMasClientes(){
         int i;
         Comuna aux = this.comunas.get(0);
         for (i = 0 ; i < comunas.size() ; i++){
             if( this.comunas.get(i).cantidadClientes() > aux.cantidadClientes())
                 aux = this.comunas.get(i);
-        }
+        }        
         return aux;
     }
 }

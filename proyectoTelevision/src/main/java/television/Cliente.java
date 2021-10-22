@@ -1,9 +1,7 @@
 package television;
 
-public class Cliente {
+public class Cliente extends Entidad {
     private int idCliente;
-    private String nombre;
-    private String rut;
     private String direccion;
     private Plan plan; 
     private int oferta;
@@ -69,4 +67,8 @@ public class Cliente {
     public int getPrecio() {
         return (plan.getPrecioPlan() * oferta) / 100;
     }
+    
+   
+        
+    
 }

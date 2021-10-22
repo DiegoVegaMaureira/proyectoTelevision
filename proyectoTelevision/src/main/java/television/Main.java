@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class FuncionesMain {
+public class Main {
     
     public void mostrarRegiones(HashMap<Integer,Region> regiones){
         int i;
@@ -14,26 +14,28 @@ public class FuncionesMain {
         }
     }
    
-    public static HashMap<Integer,Region> inicializar() throws FileNotFoundException{
+    
+    
+    public static void main (String[] args) throws IOException {
         
-        HashMap<Integer,Region> r = new HashMap<>();
+       
         try{
             File archivo = new File("./src/reporte/reporte.txt");
             archivo.delete();;
         }catch(Exception e){
            System.out.println(e);
         }
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
+        boolean running = true;
         
-        int i;
-        int codigo;
-        String nombreComuna;
-        String linea;
        
        File archivo = new File("./src/txt/comunas.txt");
        
        Scanner s = new Scanner(archivo);
        
-       
+       HashMap<Integer,Region> r = new HashMap<>();
        
         r.put(1 , new Region(1 , "Region de Tarapacá"));
         r.put(2 , new Region(2 , "Region de Antofagasta"));
@@ -51,6 +53,13 @@ public class FuncionesMain {
         r.put(14, new Region(14, "Region de Los Rios"));
         r.put(15, new Region(15, "Region de Arica y Parinacota"));
         
+        int i;
+        int codigo;
+        String nombreComuna;
+        String linea;
+        
+       
+        
         while(s.hasNextLine()){
             linea = s.nextLine();
             String lineas[] = linea.split(",");
@@ -62,17 +71,6 @@ public class FuncionesMain {
         }
         for (i = 1; i <= 15 ; i++)
                 r.get(i).leerClientes();
-        
-        return  r;
-    }
-    
-    public static void mostrarOpciones(HashMap<Integer,Region> r) throws IOException{
-        
-        boolean running = true;
-        
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        
-        int i;
         
         while(running) {
             System.out.println("1) Inscribir cliente");
@@ -87,6 +85,8 @@ public class FuncionesMain {
             System.out.println("10) Eliminar comuna");
             System.out.println("11) Mostrar comunas");
             System.out.println("12) Agregar comuna");
+            System.out.println("13) Filtrar clientes de acuerdo a la inicial de su nombre");
+            System.out.println("14) Mostrar comuna con mas clientes");
             System.out.println("0) Salir");
 
             int opcion = Integer.parseInt(input.readLine());
@@ -122,6 +122,23 @@ public class FuncionesMain {
                 r.get(region).agregarComuna(nombreAux, 100);
                 continue;
             }
+            if (opcion == 13){
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Indique la primera letra del nombre que busca: ");
+                char letra = sc.next().charAt(0);
+                for (i = 1; i <= 15 ; i++)
+                    r.get(i).filtrarClientesPorCriterio(letra);
+                continue;
+            }
+            if (opcion == 14){
+                Comuna aux = r.get(1).comunaMasClientes();
+                for (i = 1; i <= 15 ; i++){
+                    if (r.get(i).comunaMasClientes().cantidadClientes() > aux.cantidadClientes())
+                        aux = r.get(i).comunaMasClientes();
+                }                
+                System.out.println("La comuna con mas clientes es: " + aux.getNombre());
+                continue;
+            }
             
             for(i = 1 ; i <= 15 ; i++){
                 System.out.println(i+")"+r.get(i).getNombre());
@@ -152,6 +169,7 @@ public class FuncionesMain {
                         if (direccion.equals("0"))
                             direccion = "No registra direccion.";
                         r.get(n).getComuna(comuna).agregarCliente(nombre, rut,direccion, plan);
+                        break;
                     }
                 case 2:
                     {
@@ -210,18 +228,9 @@ public class FuncionesMain {
                     r.get(n).eliminarComuna(comuna);
                     break;
                 }
+                
                      
             }
         }
     }
-    
-    public static void main (String[] args) throws IOException {
-        
-        
-        HashMap<Integer,Region> r = inicializar();
-        mostrarOpciones(r);
-        
-    }
-    
-    
 }
