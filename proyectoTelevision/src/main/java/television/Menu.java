@@ -9,8 +9,6 @@ package television;
  *
  * @author rorro
  */
-public abstract class Entidad {
-    String nombre;
-    String rut;
+public class Menu {
     
 }

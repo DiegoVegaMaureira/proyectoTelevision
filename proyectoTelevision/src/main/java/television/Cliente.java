@@ -1,6 +1,6 @@
 package television;
 
-public class Cliente extends Entidad {
+public class Cliente extends Persona {
     private int idCliente;
     private String direccion;
     private Plan plan; 
@@ -35,21 +35,10 @@ public class Cliente extends Entidad {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public void setNombre(String n){
-        this.nombre = n;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setRut(String r){
-        this.rut = r;
-    }
-
-    public String getRut(){
-        return rut;
+    
+    @Override
+    public boolean esAdmin(){
+        return false;
     }
 
     public void setPlan(int n) {

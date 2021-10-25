@@ -237,7 +237,7 @@ public class Comuna implements Filtro {
     public boolean mostrarCliente(String r) {
                 int aux = getIdCliente(r);
                 if (aux == -1){
-                    System.out.println("No existe un cliente con ese rut en nuestros registros.");
+                    //System.out.println("No existe un cliente con ese rut en nuestros registros.");
                     return false;
                 }
                 System.out.println("                    Cliente "+ (aux + 1) + ":");

@@ -112,4 +112,16 @@ public class Region implements Filtro{
         }        
         return aux;
     }
+    
+    public boolean mostrarCliente(String r){
+        int i;
+        for (i = 0; i < comunas.size() ; i++){
+            if(this.comunas.get(i).mostrarCliente(r)){
+                return true;
+            }
+                
+                
+        }
+        return false;
+    }
 }

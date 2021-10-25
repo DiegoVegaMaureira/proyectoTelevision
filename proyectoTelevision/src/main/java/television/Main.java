@@ -28,7 +28,7 @@ public class Main {
 
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
-        boolean running = true;
+        
         
        
        File archivo = new File("./src/txt/comunas.txt");
@@ -71,8 +71,38 @@ public class Main {
         }
         for (i = 1; i <= 15 ; i++)
                 r.get(i).leerClientes();
+        Admin ad = new Admin("admin","0000");
+        System.out.println("Seleccione el numero del tipo de entidad es usted:");
+        System.out.println("1) Cliente");
+        System.out.println("2) Ejecutivo");
+        int opcion = Integer.parseInt(input.readLine());
+        boolean menuAdmin = false;
         
-        while(running) {
+        //CREAR IF SI LA OPCION NO ES NI 1 NI 2
+        
+        if (opcion == 1){
+            System.out.println("Ingrese su rut");
+            String rut = input.readLine();
+            for (i = 1; i <= 15 ; i++){
+                if (r.get(i).mostrarCliente(rut))
+                    break;
+            }
+        }
+        if (opcion == 2){
+            System.out.println("Ingrese su nombre: ");
+            String auxNombre = input.readLine();
+            System.out.println("Ingrese rut: ");
+            String auxRut = input.readLine();
+            if (ad.getRut().equals(auxRut)){
+                menuAdmin = true;
+            }
+        }
+        
+            
+        
+        
+
+        while(menuAdmin) {
             System.out.println("1) Inscribir cliente");
             System.out.println("2) Dar de baja ciente");
             System.out.println("3) Editar datos de cliente");
@@ -89,7 +119,7 @@ public class Main {
             System.out.println("14) Mostrar comuna con mas clientes");
             System.out.println("0) Salir");
 
-            int opcion = Integer.parseInt(input.readLine());
+            opcion = Integer.parseInt(input.readLine());
             
             
             
