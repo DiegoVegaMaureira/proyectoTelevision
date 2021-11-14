@@ -5,6 +5,7 @@
  */
 package television;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -22,6 +23,10 @@ public class Region implements Filtro{
         nombre = n;
     }
     
+    public HashMap<Integer,Comuna> getListaComunas(){
+        return comunas;
+    }
+    
     public String getNombre(){
         return nombre;
     }
@@ -30,12 +35,16 @@ public class Region implements Filtro{
         return comunas.get(comuna);
     }
     
-    public void agregarComuna(String n , int pob){
-        Comuna aux = new Comuna(n, pob);
+    public int getCantidadComunas(){
+        return comunas.size();
+    }
+    
+    public void agregarComuna(String n , int cod, int pob){
+        Comuna aux = new Comuna(n, comunas.size(), pob, numero);
         this.comunas.put(comunas.size(), aux);
     }
         
-        public void eliminarComuna(int identificador){
+    public void eliminarComuna(int identificador){
         int i;
 
         comunas.remove(identificador);
@@ -85,7 +94,7 @@ public class Region implements Filtro{
             this.comunas.get(i).limpiarListaClientes();
     }
     
-    public void leerClientes(){   
+    public void leerClientes() throws IOException{   
         int i;
         for (i = 0 ; i < comunas.size() ; i++)
             this.comunas.get(i).leerClientes();

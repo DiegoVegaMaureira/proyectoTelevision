@@ -9,17 +9,25 @@ import java.io.FileWriter;
 
 public class Comuna implements Filtro {
     private String nombre;
+    private int codigo;
+    private int region;
     public boolean tieneClientes = false;
     private int cantidadCasas;
     public int casasInscritas;
     private int oferta;
     private ArrayList<Cliente> clientes = new ArrayList<>();
 
-    public Comuna(String n, int pob) {
+    public Comuna(String n,int codigo, int pob , int reg) {
+        region = reg;
+        this.codigo = codigo;
         nombre = n;
         cantidadCasas = pob;
         casasInscritas = 0;
         oferta = 100;
+    }
+    
+    public int getRegion(){
+        return region;
     }
 
     public String getNombre(){
@@ -74,10 +82,9 @@ public class Comuna implements Filtro {
     public Cliente getCliente(String r) {
         int i;
 
-        for(i = 0 ; i < casasInscritas ; i++){
+        for(i = 0 ; i < clientes.size() ; i++){
             if(clientes.get(i).getRut().equals(r)){
                 return clientes.get(i);
-                
             }
         }
 
@@ -142,26 +149,24 @@ public class Comuna implements Filtro {
         
     }
     
-    public void leerClientes (){
-        try{          
-            String ruta = (("./src/txt/") + nombre + (".txt"));
-            File file = new File(ruta);
-            if (file.exists() ){
-                FileReader fr = new FileReader (ruta);
-                BufferedReader br = new BufferedReader(fr);
-                String cadena;
-                String parts[];
-                while((cadena=br.readLine()) != null){
-                    parts = cadena.split(","); 
-                    int plan = Integer.parseInt(parts[3]);
-                    agregarCliente(parts[0],parts[1],parts[2],plan);   
-                    casasInscritas++;       
-                }
-                
+    public void leerClientes () throws IOException{
+        
+        String ruta = (("./src/txt/ ") + nombre + (".txt"));
+        File file = new File(ruta);
+        if (file.exists() ){
+            Scanner lector = new Scanner(file);
+            String cadena;
+            String parts[];
+            while(lector.hasNextLine()){
+                cadena = lector.nextLine();
+                parts = cadena.split(",");
+                int plan = Integer.parseInt(parts[3]);
+                int reg = Integer.parseInt(parts[4]);
+                int com = Integer.parseInt(parts[5]);
+                agregarCliente(parts[0],parts[1],parts[2],plan,reg,com);   
+                casasInscritas++;       
             }
-            
-        }catch (Exception e){
-            e.printStackTrace();
+
         }
     }
     
@@ -182,7 +187,9 @@ public class Comuna implements Filtro {
                     bw.write(clientes.get(i).getNombre() + (","));
                     bw.write(clientes.get(i).getRut() + (","));
                     bw.write(clientes.get(i).getDireccion() + (","));
-                    bw.write(clientes.get(i).getPlan() + ("\n"));
+                    bw.write(clientes.get(i).getPlan() + (","));
+                    bw.write(clientes.get(i).getRegion()+ (","));
+                    bw.write(clientes.get(i).getComuna()+ ("\n"));
                 }
                 bw.close();
         } catch (Exception e) {
@@ -193,13 +200,29 @@ public class Comuna implements Filtro {
     }
 
 
-    public void agregarCliente(String nombre, String rut , String direccion , int plan) {
+    public void agregarCliente(String nombre, String rut , String direccion , int plan , int reg , int com) throws IOException {
 
         if (casasInscritas < cantidadCasas) {
             tieneClientes = true;
-            Cliente aux = new Cliente(nombre, rut , direccion , plan);
+            Cliente aux = new Cliente(nombre, rut , direccion , plan , region , com);
             clientes.add(aux);
             casasInscritas++;
+            
+            //se registra en el txt correspondiente
+            String ruta = (("./src/txt/") + this.nombre + (".txt"));
+            File file = new File(ruta);
+            // Si el archivo no existe es creado
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            Scanner s = new Scanner(file);
+            String linea = (nombre + "," + rut + "," + direccion + "," + plan + "," + region+ "," + com+ "\n");
+            
+            while(s.hasNextLine()){}   
+            bw.write(linea);
+            bw.close();
 
         } else {
             System.out.print("Todas las casas del sector son clientes");
@@ -210,11 +233,11 @@ public class Comuna implements Filtro {
         this.clientes.clear();
     }
 
-    public void agregarCliente(String nombre, String rut  , int plan) {
+    public void agregarCliente(String nombre, String rut  , int plan , int reg , int com) {
 
         if (casasInscritas < cantidadCasas) {
             tieneClientes = true;
-            Cliente aux = new Cliente(nombre, rut , plan);
+            Cliente aux = new Cliente(nombre, rut , plan , reg , com);
             this.clientes.add(aux);
             casasInscritas++;
 

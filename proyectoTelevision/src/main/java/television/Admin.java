@@ -10,11 +10,10 @@ package television;
  * @author rorro
  */
 public class Admin extends Persona {
-    int clave;
     
     public Admin (String n,String r){
-        rut = r;
-        nombre = r;        
+        this.setNombre(n);
+        this.setRut(r);
     }
     /**
      *

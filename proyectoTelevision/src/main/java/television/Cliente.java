@@ -5,19 +5,26 @@ public class Cliente extends Persona {
     private String direccion;
     private Plan plan; 
     private int oferta;
+    private int region;
+    private int comuna;
 
-    public Cliente (String nom , String r , String d , int p) {
-        nombre = nom;
-        rut = r;
-        direccion = d;
-        plan  = new Plan(p);
+    public Cliente (String nombre , String rut , String direccion , int plan , 
+            int region , int comuna) {
+        this.setNombre(nombre);
+        this.setRut(rut);
+        direccion = direccion;
+        this.plan  = new Plan(plan);
+        this.region = region;
+        this.comuna = comuna;
     }
 
-    public Cliente (String nom , String r  , int p) {
-        nombre = nom;
-        rut = r;
+    public Cliente (String n , String r  , int p , int region , int comuna) {
+        this.setNombre(n);
+        this.setRut(r);
         direccion = null;
         plan  = new Plan(p);
+        this.region = region;
+        this.comuna = comuna;
     }
     
     public int getIdCliente(){
@@ -29,6 +36,9 @@ public class Cliente extends Persona {
     }
     
     public String getDireccion() {
+        if(direccion == null){
+            return "Plan por internet";
+        }
         return direccion;
     }
 
@@ -57,6 +67,13 @@ public class Cliente extends Persona {
         return (plan.getPrecioPlan() * oferta) / 100;
     }
     
+    public int getRegion(){
+        return region;
+    }
+    
+    public int getComuna(){
+        return comuna;
+    }
    
         
     

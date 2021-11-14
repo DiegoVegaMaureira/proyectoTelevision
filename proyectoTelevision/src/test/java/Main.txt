@@ -1,4 +1,4 @@
-package television;
+
 
 import java.io.*;
 import java.util.HashMap;
@@ -61,13 +61,15 @@ public class Main {
        
         
         while(s.hasNextLine()){
+            while(s.hasNextLine()){
             linea = s.nextLine();
-            String lineas[] = linea.split(",");
+            lineas = linea.split(",");
             
-            codigo = Integer.parseInt(lineas[0]) / 1000;
-            nombreComuna = lineas[1];
+            codigoRegion = Integer.parseInt(lineas[0]) / 1000;
+            codigoComuna = Integer.parseInt(lineas[0]) % 1000;
             
-            r.get(codigo).agregarComuna(nombreComuna, 100);
+            regiones.get(codigoRegion).agregarComuna(lineas[1], codigoComuna , 100);
+        }
         }
         for (i = 1; i <= 15 ; i++)
                 r.get(i).leerClientes();

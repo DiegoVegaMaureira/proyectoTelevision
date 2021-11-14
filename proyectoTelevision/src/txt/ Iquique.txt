@@ -1,2 +1,0 @@
-asd,123,asd 123,1
-Juan,123123123,No registra direccion.,1
