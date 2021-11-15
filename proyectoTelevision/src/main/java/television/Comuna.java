@@ -145,8 +145,6 @@ public class Comuna implements Filtro {
             e.printStackTrace();
           }
         }    
-        
-        
     }
     
     public void leerClientes () throws IOException{

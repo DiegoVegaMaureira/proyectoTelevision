@@ -7,8 +7,12 @@ package television;
 
 import java.awt.Component;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,7 +86,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         
         try{
             File archivo = new File("./src/reporte/reporte.txt");
-            archivo.delete();;
+            archivo.delete();
         }catch(Exception e){
            System.out.println(e);
         }        
@@ -155,6 +159,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        frameIngresoRut = new javax.swing.JFrame();
+        busquedaRut = new javax.swing.JTextField();
+        botonBuscarRut = new javax.swing.JButton();
+        instruccionBusquedaRut = new javax.swing.JLabel();
+        advertenciaBusquedaRut = new javax.swing.JLabel();
         paneles = new javax.swing.JTabbedPane();
         panelIngresoRut = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -184,7 +193,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
         botonCerrarSesionCliente = new javax.swing.JButton();
 
         frameIngresoDatos.setMinimumSize(new java.awt.Dimension(600, 500));
-        frameIngresoDatos.setPreferredSize(new java.awt.Dimension(600, 500));
 
         jLabel1.setText("Rut sin puntos y con guion");
 
@@ -327,6 +335,57 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        frameIngresoRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                frameIngresoRutFocusGained(evt);
+            }
+        });
+
+        busquedaRut.setText("Ingrese Rut");
+        busquedaRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedaRutActionPerformed(evt);
+            }
+        });
+
+        botonBuscarRut.setText("Buscar");
+        botonBuscarRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarRutActionPerformed(evt);
+            }
+        });
+
+        instruccionBusquedaRut.setText(" ");
+
+        javax.swing.GroupLayout frameIngresoRutLayout = new javax.swing.GroupLayout(frameIngresoRut.getContentPane());
+        frameIngresoRut.getContentPane().setLayout(frameIngresoRutLayout);
+        frameIngresoRutLayout.setHorizontalGroup(
+            frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameIngresoRutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(instruccionBusquedaRut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(busquedaRut)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameIngresoRutLayout.createSequentialGroup()
+                        .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonBuscarRut)))
+                .addContainerGap())
+        );
+        frameIngresoRutLayout.setVerticalGroup(
+            frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameIngresoRutLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(instruccionBusquedaRut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(busquedaRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonBuscarRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mientel");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -443,6 +502,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
         });
 
         botonEliminarCliente.setText("Eliminar Cliente");
+        botonEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarClienteActionPerformed(evt);
+            }
+        });
 
         botonEditarCliente.setText("Editar Cliente");
 
@@ -733,6 +797,71 @@ public class PantallaIngreso extends javax.swing.JFrame {
         ingresoRut.requestFocus();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
+    private void botonEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarClienteActionPerformed
+        // TODO add your handling code here:
+        
+        instruccionBusquedaRut.setText("Ingrese rut a eliminar");
+        frameIngresoRut.setVisible(true);
+    }//GEN-LAST:event_botonEliminarClienteActionPerformed
+
+    private void busquedaRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaRutActionPerformed
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_busquedaRutActionPerformed
+
+    private void frameIngresoRutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_frameIngresoRutFocusGained
+        // TODO add your handling code here:
+        busquedaRut.requestFocus();
+    }//GEN-LAST:event_frameIngresoRutFocusGained
+
+    private void botonBuscarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRutActionPerformed
+        // TODO add your handling code here:
+        Cliente eliminado = buscarCliente(busquedaRut.getText(), regiones);
+        
+        if (eliminado == null){
+            advertenciaBusquedaRut.setText("Rut inexistente");
+        } else {
+            
+            File viejo = new File((("./src/txt/ ") + regiones.get(eliminado.getRegion()).getComuna(eliminado.getComuna()).getNombre() + (".txt")));
+            File nuevo = new File("./src/txt/nuevo.txt");
+            
+            BufferedReader br = null;
+            BufferedWriter bw = null;
+            try {
+                br = new BufferedReader(new FileReader(viejo));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                bw = new BufferedWriter(new FileWriter(nuevo));
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            String linea;
+            String[] lineas;
+            
+            if(!nuevo.exists()){
+                try {
+                    nuevo.createNewFile();
+                } catch (IOException ex) {
+                    Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            try {
+                while((linea = br.readLine()) != null){
+                    bw = br;
+                    lineas = linea.split(",");
+                    
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_botonBuscarRutActionPerformed
+
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
@@ -788,8 +917,10 @@ public class PantallaIngreso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIngresoRut;
+    private javax.swing.JLabel advertenciaBusquedaRut;
     private javax.swing.JLabel advertenciaRutNoRegistrado;
     private javax.swing.JButton botonAgregarCliente;
+    private javax.swing.JButton botonBuscarRut;
     private javax.swing.JButton botonCambiarPlan;
     private javax.swing.JButton botonCancelarSuscripcion;
     private javax.swing.JButton botonCerrarSesion;
@@ -799,11 +930,14 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminarCliente;
     private javax.swing.JButton botonListaCliente;
     private javax.swing.JButton botonRegistrarClienteNuevo;
+    private javax.swing.JTextField busquedaRut;
     private javax.swing.JComboBox<String> comboComunas;
     private javax.swing.JComboBox<String> comboListaPlanes;
     private javax.swing.JComboBox<String> comboRegiones;
     private javax.swing.JFrame frameIngresoDatos;
+    private javax.swing.JFrame frameIngresoRut;
     private javax.swing.JTextField ingresoRut;
+    private javax.swing.JLabel instruccionBusquedaRut;
     private javax.swing.JLabel instruccionIngresoRut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
