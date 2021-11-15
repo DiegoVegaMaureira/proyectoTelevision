@@ -927,7 +927,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 panelListaClientes.append("   +" + regiones.get(i).getComuna(j).getNombre() + ":\n");
                 
                 for(k = 0 ; k < regiones.get(i).getComuna(j).cantidadClientes() ; k++){
-                    panelListaClientes.append("       -" + regiones.get(i).getComuna(j).getCliente(k) + ":\n");
+                    panelListaClientes.append("       -" + regiones.get(i).getComuna(j).getCliente(k).getNombre() + ":\n");
                 }
             }
         }

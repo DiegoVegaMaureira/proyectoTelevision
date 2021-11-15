@@ -219,7 +219,7 @@ public class Comuna implements Filtro {
             FileWriter fw = new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(fw);
             Scanner s = new Scanner(file);
-            String linea = (nombre + "," + rut + "," + direccion + "," + plan + "," + region+ "," + com+ "\n");
+            String linea = (nombre + "," + rut + "," + direccion + "," + plan + "," + region + "," + com+ "\n");
             
             while(s.hasNextLine()){}   
             bw.write(linea);
