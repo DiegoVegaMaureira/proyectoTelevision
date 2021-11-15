@@ -167,7 +167,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         advertenciaBusquedaRut = new javax.swing.JLabel();
         ventanaListaClientes = new javax.swing.JFrame();
         jLabel13 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollListaClientes = new javax.swing.JScrollPane();
         panelListaClientes = new javax.swing.JTextArea();
         paneles = new javax.swing.JTabbedPane();
         panelIngresoRut = new javax.swing.JPanel();
@@ -391,11 +391,14 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        ventanaListaClientes.setMinimumSize(new java.awt.Dimension(600, 600));
+        ventanaListaClientes.setPreferredSize(new java.awt.Dimension(600, 600));
+
         jLabel13.setText("Lista de clientes:");
 
         panelListaClientes.setColumns(20);
         panelListaClientes.setRows(5);
-        jScrollPane1.setViewportView(panelListaClientes);
+        scrollListaClientes.setViewportView(panelListaClientes);
 
         javax.swing.GroupLayout ventanaListaClientesLayout = new javax.swing.GroupLayout(ventanaListaClientes.getContentPane());
         ventanaListaClientes.getContentPane().setLayout(ventanaListaClientesLayout);
@@ -404,7 +407,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
             .addGroup(ventanaListaClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ventanaListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(scrollListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(ventanaListaClientesLayout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -416,7 +419,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(scrollListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -928,6 +931,9 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 }
             }
         }
+        
+        panelListaClientes.setCaretPosition(0);
+        panelListaClientes.setEditable(false);
     }//GEN-LAST:event_botonListaClienteActionPerformed
 
     private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
@@ -1028,7 +1034,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAdvertenciaRegistro;
     private javax.swing.JLabel labelComunaCLiente;
     private javax.swing.JLabel labelNombreAdmin;
@@ -1043,6 +1048,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JTextField registroDireccion;
     private javax.swing.JTextField registroNombre;
     private javax.swing.JTextField registroRut;
+    private javax.swing.JScrollPane scrollListaClientes;
     private javax.swing.JFrame ventanaListaClientes;
     // End of variables declaration//GEN-END:variables
 }
