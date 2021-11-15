@@ -77,8 +77,11 @@ public class Comuna implements Filtro {
             }
         }
     }
-
-
+    
+    public Cliente getCliente(int n){
+        return this.clientes.get(n);
+    }
+    
     public Cliente getCliente(String r) {
         int i;
 

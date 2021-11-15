@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -161,9 +162,13 @@ public class PantallaIngreso extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         frameIngresoRut = new javax.swing.JFrame();
         busquedaRut = new javax.swing.JTextField();
-        botonBuscarRut = new javax.swing.JButton();
+        botonBuscarRutEliminar = new javax.swing.JButton();
         instruccionBusquedaRut = new javax.swing.JLabel();
         advertenciaBusquedaRut = new javax.swing.JLabel();
+        ventanaListaClientes = new javax.swing.JFrame();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelListaClientes = new javax.swing.JTextArea();
         paneles = new javax.swing.JTabbedPane();
         panelIngresoRut = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -348,10 +353,10 @@ public class PantallaIngreso extends javax.swing.JFrame {
             }
         });
 
-        botonBuscarRut.setText("Buscar");
-        botonBuscarRut.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscarRutEliminar.setText("Buscar");
+        botonBuscarRutEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarRutActionPerformed(evt);
+                botonBuscarRutEliminarActionPerformed(evt);
             }
         });
 
@@ -369,7 +374,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameIngresoRutLayout.createSequentialGroup()
                         .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonBuscarRut)))
+                        .addComponent(botonBuscarRutEliminar)))
                 .addContainerGap())
         );
         frameIngresoRutLayout.setVerticalGroup(
@@ -382,7 +387,36 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBuscarRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonBuscarRutEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jLabel13.setText("Lista de clientes:");
+
+        panelListaClientes.setColumns(20);
+        panelListaClientes.setRows(5);
+        jScrollPane1.setViewportView(panelListaClientes);
+
+        javax.swing.GroupLayout ventanaListaClientesLayout = new javax.swing.GroupLayout(ventanaListaClientes.getContentPane());
+        ventanaListaClientes.getContentPane().setLayout(ventanaListaClientesLayout);
+        ventanaListaClientesLayout.setHorizontalGroup(
+            ventanaListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaListaClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ventanaListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addGroup(ventanaListaClientesLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        ventanaListaClientesLayout.setVerticalGroup(
+            ventanaListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaListaClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -406,10 +440,10 @@ public class PantallaIngreso extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel2)
-                .addContainerGap())
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,7 +516,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
             panelIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelIngresoRutLayout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -509,8 +543,18 @@ public class PantallaIngreso extends javax.swing.JFrame {
         });
 
         botonEditarCliente.setText("Editar Cliente");
+        botonEditarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarClienteActionPerformed(evt);
+            }
+        });
 
         botonListaCliente.setText("Lista Clientes");
+        botonListaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListaClienteActionPerformed(evt);
+            }
+        });
 
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 255)));
 
@@ -815,8 +859,9 @@ public class PantallaIngreso extends javax.swing.JFrame {
         busquedaRut.requestFocus();
     }//GEN-LAST:event_frameIngresoRutFocusGained
 
-    private void botonBuscarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRutActionPerformed
+    private void botonBuscarRutEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRutEliminarActionPerformed
         // TODO add your handling code here:
+        /*
         Cliente eliminado = buscarCliente(busquedaRut.getText(), regiones);
         
         if (eliminado == null){
@@ -852,15 +897,42 @@ public class PantallaIngreso extends javax.swing.JFrame {
             
             try {
                 while((linea = br.readLine()) != null){
-                    bw = br;
+                    bw.write(linea);
+                    bw.newLine();
                     lineas = linea.split(",");
-                    
+                    if(lineas[1] == eliminado.getRut()){
+                        continue;
+                    }
                 }
             } catch (IOException ex) {
                 Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }*/
+    }//GEN-LAST:event_botonBuscarRutEliminarActionPerformed
+
+    private void botonListaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListaClienteActionPerformed
+        // TODO add your handling code here:
+        
+        ventanaListaClientes.setVisible(true);
+        
+        int i,j,k;
+        
+        for(i = 1 ; i < 16 ; i++){
+            panelListaClientes.append(regiones.get(i).getNombre() + ":\n");
+            
+            for(j = 0 ; j < regiones.get(i).getCantidadComunas() ; j++){
+                panelListaClientes.append("   +" + regiones.get(i).getComuna(j).getNombre() + ":\n");
+                
+                for(k = 0 ; k < regiones.get(i).getComuna(j).cantidadClientes() ; k++){
+                    panelListaClientes.append("       -" + regiones.get(i).getComuna(j).getCliente(k) + ":\n");
+                }
+            }
         }
-    }//GEN-LAST:event_botonBuscarRutActionPerformed
+    }//GEN-LAST:event_botonListaClienteActionPerformed
+
+    private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEditarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,7 +992,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel advertenciaBusquedaRut;
     private javax.swing.JLabel advertenciaRutNoRegistrado;
     private javax.swing.JButton botonAgregarCliente;
-    private javax.swing.JButton botonBuscarRut;
+    private javax.swing.JButton botonBuscarRutEliminar;
     private javax.swing.JButton botonCambiarPlan;
     private javax.swing.JButton botonCancelarSuscripcion;
     private javax.swing.JButton botonCerrarSesion;
@@ -943,6 +1015,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -955,6 +1028,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAdvertenciaRegistro;
     private javax.swing.JLabel labelComunaCLiente;
     private javax.swing.JLabel labelNombreAdmin;
@@ -964,9 +1038,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel panelAdmin;
     private javax.swing.JPanel panelCliente;
     private javax.swing.JPanel panelIngresoRut;
+    private javax.swing.JTextArea panelListaClientes;
     private javax.swing.JTabbedPane paneles;
     private javax.swing.JTextField registroDireccion;
     private javax.swing.JTextField registroNombre;
     private javax.swing.JTextField registroRut;
+    private javax.swing.JFrame ventanaListaClientes;
     // End of variables declaration//GEN-END:variables
 }
