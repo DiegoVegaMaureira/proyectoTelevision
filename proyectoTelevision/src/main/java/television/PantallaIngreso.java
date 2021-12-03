@@ -818,6 +818,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     }//GEN-LAST:event_comboComunasActionPerformed
 
     private void botonRegistrarClienteNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarClienteNuevoActionPerformed
+        
         if(registroRut.getText().equals("")){
             labelAdvertenciaRegistro.setText("Debe ingresar un rut valido.");
         } else if (registroNombre.getText().equals("")){
@@ -825,15 +826,14 @@ public class PantallaIngreso extends javax.swing.JFrame {
         } else if (comboRegiones.getSelectedIndex() == 0){
             labelAdvertenciaRegistro.setText("Debe Seleccionar una region.");
         } else {
-            try {
-                regiones.get(comboRegiones.getSelectedIndex()).getComuna(comboComunas.getSelectedIndex()).agregarCliente(registroNombre.getText(), registroRut.getText(), registroDireccion.getText() ,comboListaPlanes.getSelectedIndex(),comboRegiones.getSelectedIndex(), comboComunas.getSelectedIndex() );
-            } catch (IOException ex) {
-                Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            regiones.get(comboRegiones.getSelectedIndex()).getComuna(comboComunas.getSelectedIndex()).agregarCliente(registroNombre.getText(), registroRut.getText(), registroDireccion.getText() ,comboListaPlanes.getSelectedIndex(),comboRegiones.getSelectedIndex(), comboComunas.getSelectedIndex() );
             frameIngresoDatos.dispatchEvent(new WindowEvent(frameIngresoDatos, WindowEvent.WINDOW_CLOSING));
             }
+        
     }//GEN-LAST:event_botonRegistrarClienteNuevoActionPerformed
 
+    
+    
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
         
         rutIngresado = null;

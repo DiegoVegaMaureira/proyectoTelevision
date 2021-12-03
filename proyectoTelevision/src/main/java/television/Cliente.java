@@ -26,6 +26,8 @@ public class Cliente extends Persona {
         this.region = region;
         this.comuna = comuna;
     }
+
+    
     
     public int getIdCliente(){
         return idCliente;

@@ -10,8 +10,8 @@ package television;
  * @author rorro
  */
 public abstract class Persona {
-    private String nombre;
-    private String rut;
+    public String nombre;
+    public String rut;
     
     public String getNombre() {
         return nombre;

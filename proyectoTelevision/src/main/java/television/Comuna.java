@@ -141,7 +141,10 @@ public class Comuna implements Filtro {
                     bw.write(clientes.get(i).getNombre() + (","));
                     bw.write(clientes.get(i).getRut() + (","));
                     bw.write(clientes.get(i).getDireccion() + (","));
-                    bw.write(clientes.get(i).getPlan() + ("\n"));
+                    bw.write(clientes.get(i).getPlan() + (","));
+                    bw.write(clientes.get(i).getRegion() + (","));
+                    bw.write(clientes.get(i).getComuna() + ("\n"));
+                   
                 }
                 bw.close();
         } catch (Exception e) {
@@ -200,7 +203,7 @@ public class Comuna implements Filtro {
         
     }
 
-
+/*
     public void agregarCliente(String nombre, String rut , String direccion , int plan , int reg , int com) throws IOException {
 
         if (casasInscritas < cantidadCasas) {
@@ -229,11 +232,24 @@ public class Comuna implements Filtro {
             System.out.print("Todas las casas del sector son clientes");
         }
     }
+    */
+
+    
+    public void agregarCliente(String nombre, String rut , String direccion , int plan , int reg , int com) {
+        if (casasInscritas < cantidadCasas) {
+            tieneClientes = true;
+            Cliente aux = new Cliente(nombre, rut , direccion , plan , region , com);
+            clientes.add(aux);
+            casasInscritas++;
+        } else {
+            System.out.print("Todas las casas del sector son clientes");
+        }
+    }
     
     public void limpiarListaClientes(){
         this.clientes.clear();
     }
-
+/*
     public void agregarCliente(String nombre, String rut  , int plan , int reg , int com) {
 
         if (casasInscritas < cantidadCasas) {
@@ -246,6 +262,7 @@ public class Comuna implements Filtro {
             System.out.print("Todas las casas del sector son clientes");
         }
     }
+*/
 
     public void eliminarCliente(String rut){
         int i;
