@@ -832,7 +832,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonRegistrarClienteNuevoActionPerformed
 
-    
+    //a
     
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
         
