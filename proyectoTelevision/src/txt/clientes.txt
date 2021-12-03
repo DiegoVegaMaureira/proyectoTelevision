@@ -1,0 +1,3 @@
+a,u,Plan por internet,3,1,0
+Joselindo Rodriguez,123456-7,Plan por internet,3,3,5
+asd,asd,Plan por internet,3,3,6

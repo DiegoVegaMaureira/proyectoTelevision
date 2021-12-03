@@ -186,7 +186,7 @@ public class Comuna implements Filtro {
                 FileWriter fw = new FileWriter(file,true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 int i;
-                bw.write("Comuna: "+nombre+":\n");
+                //bw.write("Comuna: "+nombre+":\n");
                 for(i  = 0 ; i < clientes.size() ; i++){
                     bw.write(clientes.get(i).getNombre() + (","));
                     bw.write(clientes.get(i).getRut() + (","));

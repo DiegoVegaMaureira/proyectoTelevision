@@ -62,6 +62,43 @@ public class PantallaIngreso extends javax.swing.JFrame {
         return null;
     }
     
+    void generarReporte() throws IOException{
+        String ruta = ("./src/txt/clientes.txt");
+        File file = new File(ruta);
+        // Si el archivo no existe es creado
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fw = new FileWriter(file,false);
+        BufferedWriter bw = new BufferedWriter(fw);
+        int i,j,k;
+        //bw.write("Comuna: "+nombre+":\n");
+        for(i  = 1 ; i < 16 ; i++){
+            for(j = 0 ; j < regiones.get(i).getCantidadComunas() ; j++){
+                for(k = 0 ; k < regiones.get(i).getComuna(j).casasInscritas ; k++){
+                    try{
+                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getNombre() + (","));
+                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getRut() + (","));
+                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getDireccion() + (","));
+                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getPlan() + (","));
+                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getRegion()+ (","));
+                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getComuna()+ ("\n")); 
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        bw.close();
+    }
+    
+    public void avisar(String aviso){
+        frameAvisos.setVisible(true);
+        labelAvisos.setText(aviso);
+        botonAceptar.requestFocus();
+    }
+    
     /**
      * Creates new form Pantalla
      * @throws java.io.FileNotFoundException
@@ -125,8 +162,28 @@ public class PantallaIngreso extends javax.swing.JFrame {
             regiones.get(codigoRegion).agregarComuna(lineas[1], codigoComuna , 100);
         }
         for (i = 1; i <= 15 ; i++)
-                regiones.get(i).leerClientes();
+            regiones.get(i).leerClientes();
         
+        //archivo texto clientes
+        File clientes = new File("./src/txt/clientes.txt");
+       
+       
+
+       if(clientes.exists()){
+           s = new Scanner(clientes);
+           while(s.hasNextLine()){
+                linea = s.nextLine();
+                lineas = linea.split(",");
+                String nombre = lineas[0];
+                String rut = lineas[1];
+                String direccion = lineas[2];
+                int plan = Integer.parseInt(lineas[3]);
+                int region = Integer.parseInt(lineas[4]);
+                int comuna = Integer.parseInt(lineas[5]);
+
+                regiones.get(region).getComuna(comuna).agregarCliente(nombre, rut, direccion, plan, region, comuna);
+           }
+       }
     }
     
     
@@ -162,13 +219,17 @@ public class PantallaIngreso extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         frameIngresoRut = new javax.swing.JFrame();
         busquedaRut = new javax.swing.JTextField();
-        botonBuscarRutEliminar = new javax.swing.JButton();
+        botonBuscarRut = new javax.swing.JButton();
         instruccionBusquedaRut = new javax.swing.JLabel();
         advertenciaBusquedaRut = new javax.swing.JLabel();
+        advertenciaRutNoEncontrado = new javax.swing.JLabel();
         ventanaListaClientes = new javax.swing.JFrame();
         jLabel13 = new javax.swing.JLabel();
         scrollListaClientes = new javax.swing.JScrollPane();
         panelListaClientes = new javax.swing.JTextArea();
+        frameAvisos = new javax.swing.JFrame();
+        labelAvisos = new javax.swing.JLabel();
+        botonAceptar = new javax.swing.JButton();
         paneles = new javax.swing.JTabbedPane();
         panelIngresoRut = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -197,7 +258,14 @@ public class PantallaIngreso extends javax.swing.JFrame {
         labelRutCLiente = new javax.swing.JLabel();
         botonCerrarSesionCliente = new javax.swing.JButton();
 
+        frameIngresoDatos.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        frameIngresoDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         frameIngresoDatos.setMinimumSize(new java.awt.Dimension(600, 500));
+        frameIngresoDatos.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                frameIngresoDatosWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Rut sin puntos y con guion");
 
@@ -221,7 +289,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         jLabel7.setText("Comuna");
 
         botonRegistrarClienteNuevo.setForeground(new java.awt.Color(0, 0, 255));
-        botonRegistrarClienteNuevo.setText("Registrar Cliente");
+        botonRegistrarClienteNuevo.setText("Aceptar");
         botonRegistrarClienteNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRegistrarClienteNuevoActionPerformed(evt);
@@ -340,27 +408,34 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        frameIngresoRut.setMinimumSize(new java.awt.Dimension(258, 160));
         frameIngresoRut.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 frameIngresoRutFocusGained(evt);
             }
         });
-
-        busquedaRut.setText("Ingrese Rut");
-        busquedaRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                busquedaRutActionPerformed(evt);
+        frameIngresoRut.addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                frameIngresoRutWindowStateChanged(evt);
             }
         });
 
-        botonBuscarRutEliminar.setText("Buscar");
-        botonBuscarRutEliminar.addActionListener(new java.awt.event.ActionListener() {
+        busquedaRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarRutEliminarActionPerformed(evt);
+                botonBuscarRutActionPerformed(evt);
+            }
+        });
+
+        botonBuscarRut.setText("Buscar");
+        botonBuscarRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarRutActionPerformed(evt);
             }
         });
 
         instruccionBusquedaRut.setText(" ");
+
+        advertenciaRutNoEncontrado.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout frameIngresoRutLayout = new javax.swing.GroupLayout(frameIngresoRut.getContentPane());
         frameIngresoRut.getContentPane().setLayout(frameIngresoRutLayout);
@@ -369,30 +444,34 @@ public class PantallaIngreso extends javax.swing.JFrame {
             .addGroup(frameIngresoRutLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(instruccionBusquedaRut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameIngresoRutLayout.createSequentialGroup()
+                        .addComponent(instruccionBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(advertenciaRutNoEncontrado))
                     .addComponent(busquedaRut)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameIngresoRutLayout.createSequentialGroup()
-                        .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonBuscarRutEliminar)))
+                        .addComponent(botonBuscarRut)))
                 .addContainerGap())
         );
         frameIngresoRutLayout.setVerticalGroup(
             frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frameIngresoRutLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(instruccionBusquedaRut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(busquedaRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(instruccionBusquedaRut)
+                    .addComponent(advertenciaRutNoEncontrado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(busquedaRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBuscarRutEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonBuscarRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         ventanaListaClientes.setMinimumSize(new java.awt.Dimension(600, 600));
-        ventanaListaClientes.setPreferredSize(new java.awt.Dimension(600, 600));
 
         jLabel13.setText("Lista de clientes:");
 
@@ -423,6 +502,41 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        frameAvisos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        frameAvisos.setMinimumSize(new java.awt.Dimension(230, 95));
+        frameAvisos.setPreferredSize(new java.awt.Dimension(230, 95));
+
+        labelAvisos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAvisos.setText("jLabel14");
+
+        botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout frameAvisosLayout = new javax.swing.GroupLayout(frameAvisos.getContentPane());
+        frameAvisos.getContentPane().setLayout(frameAvisosLayout);
+        frameAvisosLayout.setHorizontalGroup(
+            frameAvisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameAvisosLayout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(frameAvisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelAvisos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41))
+        );
+        frameAvisosLayout.setVerticalGroup(
+            frameAvisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameAvisosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelAvisos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(23, 23, 23))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mientel");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -430,6 +544,12 @@ public class PantallaIngreso extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                listenerCerrarVentana(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                listenerCerrarVentana(evt);
             }
         });
 
@@ -744,7 +864,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
 
     private void BotonIngresoRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BotonIngresoRutKeyReleased
         // TODO add your handling code here:
-        if (true){}
     }//GEN-LAST:event_BotonIngresoRutKeyReleased
 
     private void BotonIngresoRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresoRutActionPerformed
@@ -827,13 +946,17 @@ public class PantallaIngreso extends javax.swing.JFrame {
             labelAdvertenciaRegistro.setText("Debe Seleccionar una region.");
         } else {
             regiones.get(comboRegiones.getSelectedIndex()).getComuna(comboComunas.getSelectedIndex()).agregarCliente(registroNombre.getText(), registroRut.getText(), registroDireccion.getText() ,comboListaPlanes.getSelectedIndex(),comboRegiones.getSelectedIndex(), comboComunas.getSelectedIndex() );
-            frameIngresoDatos.dispatchEvent(new WindowEvent(frameIngresoDatos, WindowEvent.WINDOW_CLOSING));
+            frameIngresoDatos.setVisible(false);
+            registroDireccion.setText("");
+            registroNombre.setText("");
+            registroRut.setText("");
+            comboComunas.setSelectedIndex(0);
+            comboListaPlanes.setSelectedIndex(0);
+            comboRegiones.setSelectedIndex(0);
             }
         
     }//GEN-LAST:event_botonRegistrarClienteNuevoActionPerformed
 
-    //a
-    
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
         
         rutIngresado = null;
@@ -851,67 +974,14 @@ public class PantallaIngreso extends javax.swing.JFrame {
         frameIngresoRut.setVisible(true);
     }//GEN-LAST:event_botonEliminarClienteActionPerformed
 
-    private void busquedaRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaRutActionPerformed
-        // TODO add your handling code here:
-        
-       
-    }//GEN-LAST:event_busquedaRutActionPerformed
-
     private void frameIngresoRutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_frameIngresoRutFocusGained
         // TODO add your handling code here:
         busquedaRut.requestFocus();
     }//GEN-LAST:event_frameIngresoRutFocusGained
 
-    private void botonBuscarRutEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRutEliminarActionPerformed
+    private void botonBuscarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRutActionPerformed
         // TODO add your handling code here:
-        /*
-        Cliente eliminado = buscarCliente(busquedaRut.getText(), regiones);
-        
-        if (eliminado == null){
-            advertenciaBusquedaRut.setText("Rut inexistente");
-        } else {
-            
-            File viejo = new File((("./src/txt/ ") + regiones.get(eliminado.getRegion()).getComuna(eliminado.getComuna()).getNombre() + (".txt")));
-            File nuevo = new File("./src/txt/nuevo.txt");
-            
-            BufferedReader br = null;
-            BufferedWriter bw = null;
-            try {
-                br = new BufferedReader(new FileReader(viejo));
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                bw = new BufferedWriter(new FileWriter(nuevo));
-            } catch (IOException ex) {
-                Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            String linea;
-            String[] lineas;
-            
-            if(!nuevo.exists()){
-                try {
-                    nuevo.createNewFile();
-                } catch (IOException ex) {
-                    Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-            try {
-                while((linea = br.readLine()) != null){
-                    bw.write(linea);
-                    bw.newLine();
-                    lineas = linea.split(",");
-                    if(lineas[1] == eliminado.getRut()){
-                        continue;
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }*/
-    }//GEN-LAST:event_botonBuscarRutEliminarActionPerformed
+    }//GEN-LAST:event_botonBuscarRutActionPerformed
 
     private void botonListaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListaClienteActionPerformed
         // TODO add your handling code here:
@@ -924,10 +994,12 @@ public class PantallaIngreso extends javax.swing.JFrame {
             panelListaClientes.append(regiones.get(i).getNombre() + ":\n");
             
             for(j = 0 ; j < regiones.get(i).getCantidadComunas() ; j++){
-                panelListaClientes.append("   +" + regiones.get(i).getComuna(j).getNombre() + ":\n");
+                panelListaClientes.append("      +" + regiones.get(i).getComuna(j).getNombre() + ":\n");
                 
                 for(k = 0 ; k < regiones.get(i).getComuna(j).cantidadClientes() ; k++){
-                    panelListaClientes.append("       -" + regiones.get(i).getComuna(j).getCliente(k).getNombre() + ":\n");
+                    panelListaClientes.append("             -" + regiones.get(i).getComuna(j).getCliente(k).getNombre() + ", ");
+                    panelListaClientes.append(regiones.get(i).getComuna(j).getCliente(k).getRut()+ ", ");
+                    panelListaClientes.append(regiones.get(i).getComuna(j).getCliente(k).getPlan()+ "\n");
                 }
             }
         }
@@ -939,6 +1011,30 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEditarClienteActionPerformed
+
+    private void listenerCerrarVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_listenerCerrarVentana
+        try {
+            // TODO add your handling code here:
+
+            generarReporte();
+        } catch (IOException ex) {
+            Logger.getLogger(PantallaIngreso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_listenerCerrarVentana
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void frameIngresoRutWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameIngresoRutWindowStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_frameIngresoRutWindowStateChanged
+
+    private void frameIngresoDatosWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameIngresoDatosWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_frameIngresoDatosWindowClosing
 
     /**
      * @param args the command line arguments
@@ -996,9 +1092,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIngresoRut;
     private javax.swing.JLabel advertenciaBusquedaRut;
+    private javax.swing.JLabel advertenciaRutNoEncontrado;
     private javax.swing.JLabel advertenciaRutNoRegistrado;
+    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAgregarCliente;
-    private javax.swing.JButton botonBuscarRutEliminar;
+    private javax.swing.JButton botonBuscarRut;
     private javax.swing.JButton botonCambiarPlan;
     private javax.swing.JButton botonCancelarSuscripcion;
     private javax.swing.JButton botonCerrarSesion;
@@ -1012,6 +1110,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboComunas;
     private javax.swing.JComboBox<String> comboListaPlanes;
     private javax.swing.JComboBox<String> comboRegiones;
+    private javax.swing.JFrame frameAvisos;
     private javax.swing.JFrame frameIngresoDatos;
     private javax.swing.JFrame frameIngresoRut;
     private javax.swing.JTextField ingresoRut;
@@ -1035,6 +1134,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelAdvertenciaRegistro;
+    private javax.swing.JLabel labelAvisos;
     private javax.swing.JLabel labelComunaCLiente;
     private javax.swing.JLabel labelNombreAdmin;
     private javax.swing.JLabel labelNombreCLiente;
