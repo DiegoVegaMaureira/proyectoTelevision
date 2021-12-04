@@ -36,6 +36,8 @@ public class PantallaIngreso extends javax.swing.JFrame {
     static Cliente usuarioCliente = null;
     static int regionSeleccionada;
     static int comunaSeleccionada;
+    static int clienteSeleccionado;
+    static int funcionBusqueda;
     
     
     Admin buscarAdmin(String rut , ArrayList<Admin> array){
@@ -69,7 +71,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         if (!file.exists()) {
             file.createNewFile();
         }
-        FileWriter fw = new FileWriter(file,false);
+        FileWriter fw = new FileWriter(file,false); // el writer reescribirá todo el archivo
         BufferedWriter bw = new BufferedWriter(fw);
         int i,j,k;
         //bw.write("Comuna: "+nombre+":\n");
@@ -77,12 +79,12 @@ public class PantallaIngreso extends javax.swing.JFrame {
             for(j = 0 ; j < regiones.get(i).getCantidadComunas() ; j++){
                 for(k = 0 ; k < regiones.get(i).getComuna(j).casasInscritas ; k++){
                     try{
-                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getNombre() + (","));
-                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getRut() + (","));
-                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getDireccion() + (","));
-                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getPlan() + (","));
-                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getRegion()+ (","));
-                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getComuna()+ ("\n")); 
+                        bw.write(regiones.get(i).getComuna(j).getCliente(k).getNombre() + (",")+
+                        regiones.get(i).getComuna(j).getCliente(k).getRut() + (",")+
+                        regiones.get(i).getComuna(j).getCliente(k).getDireccion() + (",")+
+                        regiones.get(i).getComuna(j).getCliente(k).getPlan() + (",")+
+                        regiones.get(i).getComuna(j).getCliente(k).getRegion()+ (",")+
+                        regiones.get(i).getComuna(j).getCliente(k).getComuna()+ ("\n")); 
                     }
                     catch(Exception e){
                         e.printStackTrace();
@@ -91,12 +93,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
             }
         }
         bw.close();
-    }
-    
-    public void avisar(String aviso){
-        frameAvisos.setVisible(true);
-        labelAvisos.setText(aviso);
-        botonAceptar.requestFocus();
     }
     
     /**
@@ -217,19 +213,15 @@ public class PantallaIngreso extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        frameIngresoRut = new javax.swing.JFrame();
-        busquedaRut = new javax.swing.JTextField();
-        botonBuscarRut = new javax.swing.JButton();
-        instruccionBusquedaRut = new javax.swing.JLabel();
-        advertenciaBusquedaRut = new javax.swing.JLabel();
-        advertenciaRutNoEncontrado = new javax.swing.JLabel();
         ventanaListaClientes = new javax.swing.JFrame();
         jLabel13 = new javax.swing.JLabel();
         scrollListaClientes = new javax.swing.JScrollPane();
         panelListaClientes = new javax.swing.JTextArea();
-        frameAvisos = new javax.swing.JFrame();
-        labelAvisos = new javax.swing.JLabel();
-        botonAceptar = new javax.swing.JButton();
+        frameEliminarCliente = new javax.swing.JFrame();
+        comboRegionesEliminar = new javax.swing.JComboBox<>();
+        comboComunasEliminar = new javax.swing.JComboBox<>();
+        comboClientesEliminar = new javax.swing.JComboBox<>();
+        botonEliminarCliente = new javax.swing.JButton();
         paneles = new javax.swing.JTabbedPane();
         panelIngresoRut = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -241,7 +233,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         advertenciaRutNoRegistrado = new javax.swing.JLabel();
         panelAdmin = new javax.swing.JPanel();
         botonAgregarCliente = new javax.swing.JButton();
-        botonEliminarCliente = new javax.swing.JButton();
+        botonVentanaEliminarCliente = new javax.swing.JButton();
         botonEditarCliente = new javax.swing.JButton();
         botonListaCliente = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -408,69 +400,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        frameIngresoRut.setMinimumSize(new java.awt.Dimension(258, 160));
-        frameIngresoRut.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                frameIngresoRutFocusGained(evt);
-            }
-        });
-        frameIngresoRut.addWindowStateListener(new java.awt.event.WindowStateListener() {
-            public void windowStateChanged(java.awt.event.WindowEvent evt) {
-                frameIngresoRutWindowStateChanged(evt);
-            }
-        });
-
-        busquedaRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarRutActionPerformed(evt);
-            }
-        });
-
-        botonBuscarRut.setText("Buscar");
-        botonBuscarRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarRutActionPerformed(evt);
-            }
-        });
-
-        instruccionBusquedaRut.setText(" ");
-
-        advertenciaRutNoEncontrado.setForeground(new java.awt.Color(255, 0, 0));
-
-        javax.swing.GroupLayout frameIngresoRutLayout = new javax.swing.GroupLayout(frameIngresoRut.getContentPane());
-        frameIngresoRut.getContentPane().setLayout(frameIngresoRutLayout);
-        frameIngresoRutLayout.setHorizontalGroup(
-            frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frameIngresoRutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameIngresoRutLayout.createSequentialGroup()
-                        .addComponent(instruccionBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(advertenciaRutNoEncontrado))
-                    .addComponent(busquedaRut)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameIngresoRutLayout.createSequentialGroup()
-                        .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonBuscarRut)))
-                .addContainerGap())
-        );
-        frameIngresoRutLayout.setVerticalGroup(
-            frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frameIngresoRutLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(instruccionBusquedaRut)
-                    .addComponent(advertenciaRutNoEncontrado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(busquedaRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addGroup(frameIngresoRutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(advertenciaBusquedaRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBuscarRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
+        ventanaListaClientes.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ventanaListaClientes.setMinimumSize(new java.awt.Dimension(600, 600));
 
         jLabel13.setText("Lista de clientes:");
@@ -502,39 +432,57 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        frameAvisos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        frameAvisos.setMinimumSize(new java.awt.Dimension(230, 95));
-        frameAvisos.setPreferredSize(new java.awt.Dimension(230, 95));
+        frameEliminarCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        labelAvisos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelAvisos.setText("jLabel14");
-
-        botonAceptar.setText("Aceptar");
-        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+        comboRegionesEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione Region-", "Región de Tarapacá.", "Región de Antofagasta.", "Región de Atacama.", "Región de Coquimbo.", "Región de Valparaíso.", "Region de O'Higgins.", "Región del Maule.", "Región del Biobío.", "Región de La Araucanía.", "Región de Los Lagos.", "Región de Aysén.", "Región de Magallanes.", "Región Metropolitana de Santiago.", "Región de Los Ríos.", "Región de Arica y Parinacota." }));
+        comboRegionesEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAceptarActionPerformed(evt);
+                comboRegionesEliminarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout frameAvisosLayout = new javax.swing.GroupLayout(frameAvisos.getContentPane());
-        frameAvisos.getContentPane().setLayout(frameAvisosLayout);
-        frameAvisosLayout.setHorizontalGroup(
-            frameAvisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameAvisosLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addGroup(frameAvisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelAvisos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
-        );
-        frameAvisosLayout.setVerticalGroup(
-            frameAvisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frameAvisosLayout.createSequentialGroup()
+        comboComunasEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..."}));
+        comboComunasEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboComunasEliminarActionPerformed(evt);
+            }
+        });
+
+        comboClientesEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..."}));
+        comboClientesEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboClientesEliminarActionPerformed(evt);
+            }
+        });
+
+        botonEliminarCliente.setText("Eliminar");
+
+        javax.swing.GroupLayout frameEliminarClienteLayout = new javax.swing.GroupLayout(frameEliminarCliente.getContentPane());
+        frameEliminarCliente.getContentPane().setLayout(frameEliminarClienteLayout);
+        frameEliminarClienteLayout.setHorizontalGroup(
+            frameEliminarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameEliminarClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelAvisos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(frameEliminarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboRegionesEliminar, 0, 330, Short.MAX_VALUE)
+                    .addComponent(comboComunasEliminar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboClientesEliminar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameEliminarClienteLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonEliminarCliente)))
+                .addContainerGap())
+        );
+        frameEliminarClienteLayout.setVerticalGroup(
+            frameEliminarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameEliminarClienteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboRegionesEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addComponent(comboComunasEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboClientesEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonEliminarCliente))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -658,10 +606,10 @@ public class PantallaIngreso extends javax.swing.JFrame {
             }
         });
 
-        botonEliminarCliente.setText("Eliminar Cliente");
-        botonEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+        botonVentanaEliminarCliente.setText("Eliminar Cliente");
+        botonVentanaEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarClienteActionPerformed(evt);
+                botonVentanaEliminarClienteActionPerformed(evt);
             }
         });
 
@@ -715,12 +663,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAdminLayout.createSequentialGroup()
-                        .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(botonEliminarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonAgregarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonEditarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(botonListaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonVentanaEliminarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAgregarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonListaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEditarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
@@ -737,7 +684,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
                     .addGroup(panelAdminLayout.createSequentialGroup()
                         .addComponent(botonAgregarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEliminarCliente)
+                        .addComponent(botonVentanaEliminarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonEditarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -967,21 +914,12 @@ public class PantallaIngreso extends javax.swing.JFrame {
         ingresoRut.requestFocus();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
-    private void botonEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarClienteActionPerformed
+    private void botonVentanaEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentanaEliminarClienteActionPerformed
         // TODO add your handling code here:
         
-        instruccionBusquedaRut.setText("Ingrese rut a eliminar");
-        frameIngresoRut.setVisible(true);
-    }//GEN-LAST:event_botonEliminarClienteActionPerformed
-
-    private void frameIngresoRutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_frameIngresoRutFocusGained
-        // TODO add your handling code here:
-        busquedaRut.requestFocus();
-    }//GEN-LAST:event_frameIngresoRutFocusGained
-
-    private void botonBuscarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarRutActionPerformed
+        frameEliminarCliente.setVisible(true);
+        
+    }//GEN-LAST:event_botonVentanaEliminarClienteActionPerformed
 
     private void botonListaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListaClienteActionPerformed
         // TODO add your handling code here:
@@ -1010,6 +948,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
 
     private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_botonEditarClienteActionPerformed
 
     private void listenerCerrarVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_listenerCerrarVentana
@@ -1024,17 +963,44 @@ public class PantallaIngreso extends javax.swing.JFrame {
         
     }//GEN-LAST:event_listenerCerrarVentana
 
-    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAceptarActionPerformed
-
-    private void frameIngresoRutWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameIngresoRutWindowStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_frameIngresoRutWindowStateChanged
-
     private void frameIngresoDatosWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_frameIngresoDatosWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_frameIngresoDatosWindowClosing
+
+    private void comboRegionesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRegionesEliminarActionPerformed
+        // TODO add your handling code here:
+        regionSeleccionada = comboRegionesEliminar.getSelectedIndex();
+        int i;
+        comboComunasEliminar.removeAllItems();
+        
+        if(regionSeleccionada > 0){
+            for(i = 0 ; i < regiones.get(regionSeleccionada).getCantidadComunas() ; i++){
+                comboComunasEliminar.addItem(regiones.get(regionSeleccionada).getComuna(i).getNombre());
+            }
+        } else {
+            comboComunasEliminar.addItem("...");
+        }
+    }//GEN-LAST:event_comboRegionesEliminarActionPerformed
+
+    private void comboComunasEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComunasEliminarActionPerformed
+        // TODO add your handling code here:
+        int i;
+        comboClientesEliminar.removeAllItems();
+        
+        comunaSeleccionada = comboComunasEliminar.getSelectedIndex();
+        
+        if(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() > 0){
+            for(i = 0 ; i < regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() ; i++){
+                comboClientesEliminar.addItem(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).getCliente(i).getNombre());
+            }
+        } else {
+            comboClientesEliminar.addItem("...");
+        }
+    }//GEN-LAST:event_comboComunasEliminarActionPerformed
+
+    private void comboClientesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClientesEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboClientesEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1091,12 +1057,8 @@ public class PantallaIngreso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIngresoRut;
-    private javax.swing.JLabel advertenciaBusquedaRut;
-    private javax.swing.JLabel advertenciaRutNoEncontrado;
     private javax.swing.JLabel advertenciaRutNoRegistrado;
-    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAgregarCliente;
-    private javax.swing.JButton botonBuscarRut;
     private javax.swing.JButton botonCambiarPlan;
     private javax.swing.JButton botonCancelarSuscripcion;
     private javax.swing.JButton botonCerrarSesion;
@@ -1106,15 +1068,16 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminarCliente;
     private javax.swing.JButton botonListaCliente;
     private javax.swing.JButton botonRegistrarClienteNuevo;
-    private javax.swing.JTextField busquedaRut;
+    private javax.swing.JButton botonVentanaEliminarCliente;
+    private javax.swing.JComboBox<String> comboClientesEliminar;
     private javax.swing.JComboBox<String> comboComunas;
+    private javax.swing.JComboBox<String> comboComunasEliminar;
     private javax.swing.JComboBox<String> comboListaPlanes;
     private javax.swing.JComboBox<String> comboRegiones;
-    private javax.swing.JFrame frameAvisos;
+    private javax.swing.JComboBox<String> comboRegionesEliminar;
+    private javax.swing.JFrame frameEliminarCliente;
     private javax.swing.JFrame frameIngresoDatos;
-    private javax.swing.JFrame frameIngresoRut;
     private javax.swing.JTextField ingresoRut;
-    private javax.swing.JLabel instruccionBusquedaRut;
     private javax.swing.JLabel instruccionIngresoRut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1134,7 +1097,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelAdvertenciaRegistro;
-    private javax.swing.JLabel labelAvisos;
     private javax.swing.JLabel labelComunaCLiente;
     private javax.swing.JLabel labelNombreAdmin;
     private javax.swing.JLabel labelNombreCLiente;
