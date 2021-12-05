@@ -1,5 +1,4 @@
 a,u,Plan por internet,3,1,0
 asd,asd,Plan por internet,3,3,4
-Joselindo Ramirez,123456-7,Plan por internet,1,3,5
-Joselindo Rodriguez,123456-7,Plan por internet,3,5,0
+Eustaquio Buenavista,444467-8,Los pinos 42,4,3,6
 Rodomiro Perez,213465-7,Plan por internet,4,5,36

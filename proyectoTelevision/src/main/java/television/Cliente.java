@@ -12,7 +12,7 @@ public class Cliente extends Persona {
             int region , int comuna) {
         this.setNombre(nombre);
         this.setRut(rut);
-        direccion = direccion;
+        this.direccion = direccion;
         this.plan  = new Plan(plan);
         this.region = region;
         this.comuna = comuna;

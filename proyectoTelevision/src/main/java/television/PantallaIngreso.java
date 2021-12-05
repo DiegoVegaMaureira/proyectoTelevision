@@ -182,6 +182,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
        }
     }
     
+    void popUp(String mensaje){
+        popUpFrame.setVisible(true);
+        labelPopUp.setText(mensaje);
+    }
+    
     
 
     /**
@@ -232,6 +237,14 @@ public class PantallaIngreso extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         comboNuevaComuna = new javax.swing.JComboBox<>();
         botonAplicarCambios = new javax.swing.JButton();
+        frameCabiarPlan = new javax.swing.JFrame();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        comboCambiarPlan = new javax.swing.JComboBox<>();
+        botonAceptarCambioPlan = new javax.swing.JButton();
+        popUpFrame = new javax.swing.JFrame();
+        labelPopUp = new javax.swing.JLabel();
+        botonCerrarPopUp = new javax.swing.JButton();
         paneles = new javax.swing.JTabbedPane();
         panelIngresoRut = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -589,6 +602,95 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        frameCabiarPlan.setMinimumSize(new java.awt.Dimension(390, 150));
+
+        jLabel16.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel16.setText("*Obligatorio");
+
+        jLabel17.setText("Plan");
+
+        comboCambiarPlan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione un plan-", "Plan via internet, sin cableado 100 canales $14990", "Plan via internet, sin cableado 120 canales (20HD) $17990", "Plan cableado con antena satelital 150 canales (50HD) $19990", "Plan cableado con antena satelital 200 canales (100HD) $24990" }));
+        comboCambiarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCambiarPlanActionPerformed(evt);
+            }
+        });
+
+        botonAceptarCambioPlan.setText("Aplicar");
+        botonAceptarCambioPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarCambioPlanActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout frameCabiarPlanLayout = new javax.swing.GroupLayout(frameCabiarPlan.getContentPane());
+        frameCabiarPlan.getContentPane().setLayout(frameCabiarPlanLayout);
+        frameCabiarPlanLayout.setHorizontalGroup(
+            frameCabiarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameCabiarPlanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(frameCabiarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboCambiarPlan, 0, 370, Short.MAX_VALUE)
+                    .addGroup(frameCabiarPlanLayout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel16)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameCabiarPlanLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botonAceptarCambioPlan))
+        );
+        frameCabiarPlanLayout.setVerticalGroup(
+            frameCabiarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(frameCabiarPlanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(frameCabiarPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboCambiarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(botonAceptarCambioPlan)
+                .addContainerGap())
+        );
+
+        popUpFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        popUpFrame.setMinimumSize(new java.awt.Dimension(220, 150));
+
+        labelPopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPopUp.setText("Insertar Texto");
+
+        botonCerrarPopUp.setText("Aceptar");
+        botonCerrarPopUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarPopUpActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout popUpFrameLayout = new javax.swing.GroupLayout(popUpFrame.getContentPane());
+        popUpFrame.getContentPane().setLayout(popUpFrameLayout);
+        popUpFrameLayout.setHorizontalGroup(
+            popUpFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popUpFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelPopUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popUpFrameLayout.createSequentialGroup()
+                .addContainerGap(74, Short.MAX_VALUE)
+                .addComponent(botonCerrarPopUp)
+                .addGap(69, 69, 69))
+        );
+        popUpFrameLayout.setVerticalGroup(
+            popUpFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popUpFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelPopUp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonCerrarPopUp)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mientel");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -815,9 +917,19 @@ public class PantallaIngreso extends javax.swing.JFrame {
 
         botonCancelarSuscripcion.setText("Cancelar Suscripcion");
         botonCancelarSuscripcion.setPreferredSize(new java.awt.Dimension(99, 23));
+        botonCancelarSuscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarSuscripcionActionPerformed(evt);
+            }
+        });
 
         botonCambiarPlan.setText("Cambiar Plan");
         botonCambiarPlan.setPreferredSize(new java.awt.Dimension(99, 23));
+        botonCambiarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCambiarPlanActionPerformed(evt);
+            }
+        });
 
         labelNombreCLiente.setText(" ");
 
@@ -1005,6 +1117,8 @@ public class PantallaIngreso extends javax.swing.JFrame {
         
         if(registroRut.getText().equals("")){
             labelAdvertenciaRegistro.setText("Debe ingresar un rut valido.");
+        } else if (buscarCliente(registroRut.getText(), regiones) != null){
+            labelAdvertenciaRegistro.setText("Rut ya registrado.");
         } else if (registroNombre.getText().equals("")){
             labelAdvertenciaRegistro.setText("Debe ingresar un nombre valido.");
         } else if (comboRegiones.getSelectedIndex() == 0){
@@ -1108,7 +1222,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         int i;
         comboClientesEliminar.removeAllItems();
         
-        comunaSeleccionada = comboComunasEliminar.getSelectedIndex();
+        comunaSeleccionada = 0;
         
         if (regionSeleccionada > 0){
             if(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() > 0){
@@ -1195,6 +1309,44 @@ public class PantallaIngreso extends javax.swing.JFrame {
         ventanaEditarDatos.dispose();
     }//GEN-LAST:event_botonAplicarCambiosActionPerformed
 
+    private void botonAceptarCambioPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarCambioPlanActionPerformed
+        // TODO add your handling code here:
+        
+        if(comboCambiarPlan.getSelectedIndex() > 0){
+            regiones.get(usuarioCliente.getRegion()).getComuna(usuarioCliente.getComuna()).getCliente(usuarioCliente.getRut())
+                .setPlan(comboCambiarPlan.getSelectedIndex());
+            
+            frameCabiarPlan.dispose();
+            popUp("Plan cambiado correctamente");
+        }
+        
+    }//GEN-LAST:event_botonAceptarCambioPlanActionPerformed
+
+    private void comboCambiarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCambiarPlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCambiarPlanActionPerformed
+
+    private void botonCambiarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPlanActionPerformed
+        // TODO add your handling code here:
+        
+        frameCabiarPlan.setVisible(true);
+    }//GEN-LAST:event_botonCambiarPlanActionPerformed
+
+    private void botonCerrarPopUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarPopUpActionPerformed
+        // TODO add your handling code here:
+        popUpFrame.dispose();
+    }//GEN-LAST:event_botonCerrarPopUpActionPerformed
+
+    private void botonCancelarSuscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarSuscripcionActionPerformed
+        // TODO add your handling code here:
+        popUp("Gracias por su tiempo con nosotros");
+        
+        regiones.get(usuarioCliente.getRegion()).getComuna(usuarioCliente.getComuna())
+                .eliminarCliente(usuarioCliente.getRut());
+        
+        botonCerrarSesion.doClick();
+    }//GEN-LAST:event_botonCancelarSuscripcionActionPerformed
+
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
@@ -1251,11 +1403,13 @@ public class PantallaIngreso extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIngresoRut;
     private javax.swing.JLabel advertenciaRutNoRegistrado;
+    private javax.swing.JButton botonAceptarCambioPlan;
     private javax.swing.JButton botonAgregarCliente;
     private javax.swing.JButton botonAgregarCliente1;
     private javax.swing.JButton botonAplicarCambios;
     private javax.swing.JButton botonCambiarPlan;
     private javax.swing.JButton botonCancelarSuscripcion;
+    private javax.swing.JButton botonCerrarPopUp;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonCerrarSesionCliente;
     private javax.swing.JButton botonEditarCliente;
@@ -1264,6 +1418,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JButton botonListaCliente;
     private javax.swing.JButton botonRegistrarClienteNuevo;
     private javax.swing.JButton botonVentanaEliminarCliente;
+    private javax.swing.JComboBox<String> comboCambiarPlan;
     private javax.swing.JComboBox<String> comboClientesEliminar;
     private javax.swing.JComboBox<String> comboComunas;
     private javax.swing.JComboBox<String> comboComunasEliminar;
@@ -1274,6 +1429,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboRegionesEliminar;
     private javax.swing.JTextField fieldNuevaDireccion;
     private javax.swing.JTextField fieldNuevoNombre;
+    private javax.swing.JFrame frameCabiarPlan;
     private javax.swing.JFrame frameEliminarCliente;
     private javax.swing.JFrame frameIngresoDatos;
     private javax.swing.JTextField ingresoRut;
@@ -1285,6 +1441,8 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel3;
@@ -1303,6 +1461,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel labelDireccionCliente;
     private javax.swing.JLabel labelNombreAdmin;
     private javax.swing.JLabel labelNombreCLiente;
+    private javax.swing.JLabel labelPopUp;
     private javax.swing.JLabel labelRegionCLiente;
     private javax.swing.JLabel labelRutCLiente;
     private javax.swing.JPanel panelAdmin;
@@ -1310,6 +1469,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel panelIngresoRut;
     private javax.swing.JTextArea panelListaClientes;
     private javax.swing.JTabbedPane paneles;
+    private javax.swing.JFrame popUpFrame;
     private javax.swing.JTextField registroDireccion;
     private javax.swing.JTextField registroNombre;
     private javax.swing.JTextField registroRut;
