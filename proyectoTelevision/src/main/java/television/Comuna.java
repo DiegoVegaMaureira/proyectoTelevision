@@ -238,7 +238,7 @@ public class Comuna implements Filtro {
     public void agregarCliente(String nombre, String rut , String direccion , int plan , int reg , int com) {
         if (casasInscritas < cantidadCasas) {
             tieneClientes = true;
-            Cliente aux = new Cliente(nombre, rut , direccion , plan , region , com);
+            Cliente aux = new Cliente(nombre, rut , direccion , plan , reg , com);
             clientes.add(aux);
             casasInscritas++;
         } else {

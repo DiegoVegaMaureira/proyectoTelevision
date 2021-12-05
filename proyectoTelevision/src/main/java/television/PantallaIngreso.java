@@ -222,10 +222,20 @@ public class PantallaIngreso extends javax.swing.JFrame {
         comboComunasEliminar = new javax.swing.JComboBox<>();
         comboClientesEliminar = new javax.swing.JComboBox<>();
         botonEliminarCliente = new javax.swing.JButton();
+        ventanaEditarDatos = new javax.swing.JFrame();
+        jLabel14 = new javax.swing.JLabel();
+        fieldNuevoNombre = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        fieldNuevaDireccion = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        comboNuevaRegion = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
+        comboNuevaComuna = new javax.swing.JComboBox<>();
+        botonAplicarCambios = new javax.swing.JButton();
         paneles = new javax.swing.JTabbedPane();
         panelIngresoRut = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        botonAgregarCliente1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         ingresoRut = new javax.swing.JTextField();
         BotonIngresoRut = new javax.swing.JButton();
@@ -248,6 +258,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         labelRegionCLiente = new javax.swing.JLabel();
         labelComunaCLiente = new javax.swing.JLabel();
         labelRutCLiente = new javax.swing.JLabel();
+        labelDireccionCliente = new javax.swing.JLabel();
         botonCerrarSesionCliente = new javax.swing.JButton();
 
         frameIngresoDatos.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -433,6 +444,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         );
 
         frameEliminarCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        frameEliminarCliente.setMinimumSize(new java.awt.Dimension(350, 184));
 
         comboRegionesEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione Region-", "Región de Tarapacá.", "Región de Antofagasta.", "Región de Atacama.", "Región de Coquimbo.", "Región de Valparaíso.", "Region de O'Higgins.", "Región del Maule.", "Región del Biobío.", "Región de La Araucanía.", "Región de Los Lagos.", "Región de Aysén.", "Región de Magallanes.", "Región Metropolitana de Santiago.", "Región de Los Ríos.", "Región de Arica y Parinacota." }));
         comboRegionesEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -485,6 +497,98 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addComponent(botonEliminarCliente))
         );
 
+        jLabel14.setText("Nombre:");
+
+        fieldNuevoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNuevoNombreActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Direccion:");
+
+        fieldNuevaDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNuevaDireccionActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Region");
+
+        comboNuevaRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione Region-", "Región de Tarapacá.", "Región de Antofagasta.", "Región de Atacama.", "Región de Coquimbo.", "Región de Valparaíso.", "Region de O'Higgins.", "Región del Maule.", "Región del Biobío.", "Región de La Araucanía.", "Región de Los Lagos.", "Región de Aysén.", "Región de Magallanes.", "Región Metropolitana de Santiago.", "Región de Los Ríos.", "Región de Arica y Parinacota." }));
+        comboNuevaRegion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNuevaRegionActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("Comuna");
+
+        comboNuevaComuna.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..."}));
+        comboNuevaComuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNuevaComunaActionPerformed(evt);
+            }
+        });
+
+        botonAplicarCambios.setText("Aplicar");
+        botonAplicarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAplicarCambiosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ventanaEditarDatosLayout = new javax.swing.GroupLayout(ventanaEditarDatos.getContentPane());
+        ventanaEditarDatos.getContentPane().setLayout(ventanaEditarDatosLayout);
+        ventanaEditarDatosLayout.setHorizontalGroup(
+            ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaEditarDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboNuevaRegion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboNuevaComuna, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaEditarDatosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonAplicarCambios))
+                    .addGroup(ventanaEditarDatosLayout.createSequentialGroup()
+                        .addGroup(ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ventanaEditarDatosLayout.createSequentialGroup()
+                                .addGroup(ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
+                                .addGroup(ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fieldNuevaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        ventanaEditarDatosLayout.setVerticalGroup(
+            ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaEditarDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(fieldNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ventanaEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(fieldNuevaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboNuevaRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboNuevaComuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(botonAplicarCambios)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mientel");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -505,22 +609,27 @@ public class PantallaIngreso extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 255)));
 
-        jLabel2.setText("Aqui irá la seccion de registro");
+        botonAgregarCliente1.setText("Registrese Aqui!");
+        botonAgregarCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(botonAgregarCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(88, 88, 88))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(botonAgregarCliente1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -638,7 +747,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelNombreAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -698,6 +807,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
 
         botonEditarDatos.setText("Editar Datos");
         botonEditarDatos.setPreferredSize(new java.awt.Dimension(99, 23));
+        botonEditarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarDatosActionPerformed(evt);
+            }
+        });
 
         botonCancelarSuscripcion.setText("Cancelar Suscripcion");
         botonCancelarSuscripcion.setPreferredSize(new java.awt.Dimension(99, 23));
@@ -720,10 +834,11 @@ public class PantallaIngreso extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelNombreCLiente, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                    .addComponent(labelNombreCLiente, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                     .addComponent(labelRutCLiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelRegionCLiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelComunaCLiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelComunaCLiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -737,7 +852,9 @@ public class PantallaIngreso extends javax.swing.JFrame {
                 .addComponent(labelRegionCLiente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelComunaCLiente)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelDireccionCliente)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         botonCerrarSesionCliente.setText("Cerrar Sesion");
@@ -778,7 +895,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
                         .addComponent(botonCambiarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonCancelarSuscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(botonCerrarSesionCliente)
                 .addContainerGap())
         );
@@ -846,6 +963,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
             labelRutCLiente.setText(usuarioCliente.getRut());
             labelRegionCLiente.setText(regiones.get(usuarioCliente.getRegion()).getNombre());
             labelComunaCLiente.setText(regiones.get(usuarioCliente.getRegion()).getComuna(usuarioCliente.getComuna()).getNombre());
+            labelDireccionCliente.setText(usuarioCliente.getDireccion());
         }
         
         ingresoRut.setText("");
@@ -893,7 +1011,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
             labelAdvertenciaRegistro.setText("Debe Seleccionar una region.");
         } else {
             regiones.get(comboRegiones.getSelectedIndex()).getComuna(comboComunas.getSelectedIndex()).agregarCliente(registroNombre.getText(), registroRut.getText(), registroDireccion.getText() ,comboListaPlanes.getSelectedIndex(),comboRegiones.getSelectedIndex(), comboComunas.getSelectedIndex() );
-            frameIngresoDatos.setVisible(false);
+            frameIngresoDatos.dispose();
             registroDireccion.setText("");
             registroNombre.setText("");
             registroRut.setText("");
@@ -972,6 +1090,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
         regionSeleccionada = comboRegionesEliminar.getSelectedIndex();
         int i;
         comboComunasEliminar.removeAllItems();
+        comboClientesEliminar.removeAllItems();
         
         if(regionSeleccionada > 0){
             for(i = 0 ; i < regiones.get(regionSeleccionada).getCantidadComunas() ; i++){
@@ -979,28 +1098,102 @@ public class PantallaIngreso extends javax.swing.JFrame {
             }
         } else {
             comboComunasEliminar.addItem("...");
+            comboClientesEliminar.addItem("...");
         }
     }//GEN-LAST:event_comboRegionesEliminarActionPerformed
 
     private void comboComunasEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComunasEliminarActionPerformed
         // TODO add your handling code here:
+
         int i;
         comboClientesEliminar.removeAllItems();
         
         comunaSeleccionada = comboComunasEliminar.getSelectedIndex();
         
-        if(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() > 0){
-            for(i = 0 ; i < regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() ; i++){
-                comboClientesEliminar.addItem(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).getCliente(i).getNombre());
-            }
+        if (regionSeleccionada > 0){
+            if(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() > 0){
+                for(i = 0 ; i < regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() ; i++){
+                    comboClientesEliminar.addItem(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).getCliente(i).getNombre());
+                }
+            } else {
+                comboClientesEliminar.addItem("...");
+            }               
         } else {
             comboClientesEliminar.addItem("...");
         }
+
     }//GEN-LAST:event_comboComunasEliminarActionPerformed
 
     private void comboClientesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClientesEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboClientesEliminarActionPerformed
+
+    private void botonEditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarDatosActionPerformed
+        // TODO add your handling code here:
+        ventanaEditarDatos.setVisible(true);
+    }//GEN-LAST:event_botonEditarDatosActionPerformed
+
+    private void comboNuevaRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNuevaRegionActionPerformed
+        // TODO add your handling code here:
+        
+        int reg = usuarioCliente.getRegion();
+        int com = usuarioCliente.getComuna();
+        
+        regionSeleccionada = comboNuevaRegion.getSelectedIndex();
+        int i;
+        comboNuevaComuna.removeAllItems();
+        
+        if(regionSeleccionada > 0){
+            for(i = 0 ; i < regiones.get(regionSeleccionada).getCantidadComunas() ; i++){
+                comboNuevaComuna.addItem(regiones.get(regionSeleccionada).getComuna(i).getNombre());
+            }
+            
+            regiones.get(reg).getComuna(com).getCliente(usuarioCliente.getRut()).setRegion(regionSeleccionada);
+        } else {
+            comboNuevaComuna.addItem("...");
+        }
+    }//GEN-LAST:event_comboNuevaRegionActionPerformed
+
+    private void comboNuevaComunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNuevaComunaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboNuevaComunaActionPerformed
+
+    private void fieldNuevoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNuevoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNuevoNombreActionPerformed
+
+    private void fieldNuevaDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNuevaDireccionActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_fieldNuevaDireccionActionPerformed
+
+    private void botonAplicarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAplicarCambiosActionPerformed
+        // TODO add your handling code here:
+        int reg = usuarioCliente.getRegion();
+        int com = usuarioCliente.getComuna();
+        
+        
+        if(fieldNuevoNombre.getText().equals("")){
+            regiones.get(reg).getComuna(com).getCliente(usuarioCliente.getRut()).setNombre(fieldNuevoNombre.getText());
+        }
+        
+        if(fieldNuevaDireccion.getText().equals("")){
+            regiones.get(reg).getComuna(com).getCliente(usuarioCliente.getRut()).setDireccion(fieldNuevaDireccion.getText());
+        }
+        
+        if(regionSeleccionada > 0){
+            regiones.get(regionSeleccionada).
+                getComuna(com).agregarCliente(usuarioCliente.getNombre(), rutIngresado, usuarioCliente.getDireccion(), 
+                    usuarioCliente.getPlan(), regionSeleccionada, comboNuevaComuna.getSelectedIndex());
+            
+            regiones.get(reg).getComuna(com).eliminarCliente(usuarioCliente.getRut());
+        }
+        
+        ventanaEditarDatos.dispose();
+    }//GEN-LAST:event_botonAplicarCambiosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1059,6 +1252,8 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JButton BotonIngresoRut;
     private javax.swing.JLabel advertenciaRutNoRegistrado;
     private javax.swing.JButton botonAgregarCliente;
+    private javax.swing.JButton botonAgregarCliente1;
+    private javax.swing.JButton botonAplicarCambios;
     private javax.swing.JButton botonCambiarPlan;
     private javax.swing.JButton botonCancelarSuscripcion;
     private javax.swing.JButton botonCerrarSesion;
@@ -1073,8 +1268,12 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboComunas;
     private javax.swing.JComboBox<String> comboComunasEliminar;
     private javax.swing.JComboBox<String> comboListaPlanes;
+    private javax.swing.JComboBox<String> comboNuevaComuna;
+    private javax.swing.JComboBox<String> comboNuevaRegion;
     private javax.swing.JComboBox<String> comboRegiones;
     private javax.swing.JComboBox<String> comboRegionesEliminar;
+    private javax.swing.JTextField fieldNuevaDireccion;
+    private javax.swing.JTextField fieldNuevoNombre;
     private javax.swing.JFrame frameEliminarCliente;
     private javax.swing.JFrame frameIngresoDatos;
     private javax.swing.JTextField ingresoRut;
@@ -1084,7 +1283,10 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1098,6 +1300,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelAdvertenciaRegistro;
     private javax.swing.JLabel labelComunaCLiente;
+    private javax.swing.JLabel labelDireccionCliente;
     private javax.swing.JLabel labelNombreAdmin;
     private javax.swing.JLabel labelNombreCLiente;
     private javax.swing.JLabel labelRegionCLiente;
@@ -1111,6 +1314,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JTextField registroNombre;
     private javax.swing.JTextField registroRut;
     private javax.swing.JScrollPane scrollListaClientes;
+    private javax.swing.JFrame ventanaEditarDatos;
     private javax.swing.JFrame ventanaListaClientes;
     // End of variables declaration//GEN-END:variables
 }

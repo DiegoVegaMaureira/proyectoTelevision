@@ -48,6 +48,14 @@ public class Cliente extends Persona {
         this.direccion = direccion;
     }
     
+    public void setRegion(int region) {
+        this.region = region;
+    }
+    
+    public void setComuna(int comuna) {
+        this.comuna = comuna;
+    }
+    
     @Override
     public boolean esAdmin(){
         return false;
