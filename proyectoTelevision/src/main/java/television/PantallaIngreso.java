@@ -223,10 +223,10 @@ public class PantallaIngreso extends javax.swing.JFrame {
         scrollListaClientes = new javax.swing.JScrollPane();
         panelListaClientes = new javax.swing.JTextArea();
         frameEliminarCliente = new javax.swing.JFrame();
-        comboRegionesEliminar = new javax.swing.JComboBox<>();
-        comboComunasEliminar = new javax.swing.JComboBox<>();
-        comboClientesEliminar = new javax.swing.JComboBox<>();
         botonEliminarCliente = new javax.swing.JButton();
+        fieldRutEliminar = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        labelRutNoRegistrado = new javax.swing.JLabel();
         ventanaEditarDatos = new javax.swing.JFrame();
         jLabel14 = new javax.swing.JLabel();
         fieldNuevoNombre = new javax.swing.JTextField();
@@ -459,28 +459,22 @@ public class PantallaIngreso extends javax.swing.JFrame {
         frameEliminarCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         frameEliminarCliente.setMinimumSize(new java.awt.Dimension(350, 184));
 
-        comboRegionesEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione Region-", "Región de Tarapacá.", "Región de Antofagasta.", "Región de Atacama.", "Región de Coquimbo.", "Región de Valparaíso.", "Region de O'Higgins.", "Región del Maule.", "Región del Biobío.", "Región de La Araucanía.", "Región de Los Lagos.", "Región de Aysén.", "Región de Magallanes.", "Región Metropolitana de Santiago.", "Región de Los Ríos.", "Región de Arica y Parinacota." }));
-        comboRegionesEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboRegionesEliminarActionPerformed(evt);
-            }
-        });
-
-        comboComunasEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..."}));
-        comboComunasEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboComunasEliminarActionPerformed(evt);
-            }
-        });
-
-        comboClientesEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..."}));
-        comboClientesEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboClientesEliminarActionPerformed(evt);
-            }
-        });
-
         botonEliminarCliente.setText("Eliminar");
+        botonEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarClienteActionPerformed(evt);
+            }
+        });
+
+        fieldRutEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldRutEliminarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Ingrese Rut a eliminar");
+
+        labelRutNoRegistrado.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout frameEliminarClienteLayout = new javax.swing.GroupLayout(frameEliminarCliente.getContentPane());
         frameEliminarCliente.getContentPane().setLayout(frameEliminarClienteLayout);
@@ -489,24 +483,29 @@ public class PantallaIngreso extends javax.swing.JFrame {
             .addGroup(frameEliminarClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(frameEliminarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboRegionesEliminar, 0, 330, Short.MAX_VALUE)
-                    .addComponent(comboComunasEliminar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboClientesEliminar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameEliminarClienteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonEliminarCliente)))
+                    .addGroup(frameEliminarClienteLayout.createSequentialGroup()
+                        .addGap(0, 261, Short.MAX_VALUE)
+                        .addComponent(botonEliminarCliente))
+                    .addGroup(frameEliminarClienteLayout.createSequentialGroup()
+                        .addGroup(frameEliminarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(frameEliminarClienteLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelRutNoRegistrado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fieldRutEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         frameEliminarClienteLayout.setVerticalGroup(
             frameEliminarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frameEliminarClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(comboRegionesEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboComunasEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboClientesEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addGroup(frameEliminarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(labelRutNoRegistrado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fieldRutEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(botonEliminarCliente))
         );
 
@@ -1199,49 +1198,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_frameIngresoDatosWindowClosing
 
-    private void comboRegionesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRegionesEliminarActionPerformed
-        // TODO add your handling code here:
-        regionSeleccionada = comboRegionesEliminar.getSelectedIndex();
-        int i;
-        comboComunasEliminar.removeAllItems();
-        comboClientesEliminar.removeAllItems();
-        
-        if(regionSeleccionada > 0){
-            for(i = 0 ; i < regiones.get(regionSeleccionada).getCantidadComunas() ; i++){
-                comboComunasEliminar.addItem(regiones.get(regionSeleccionada).getComuna(i).getNombre());
-            }
-        } else {
-            comboComunasEliminar.addItem("...");
-            comboClientesEliminar.addItem("...");
-        }
-    }//GEN-LAST:event_comboRegionesEliminarActionPerformed
-
-    private void comboComunasEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComunasEliminarActionPerformed
-        // TODO add your handling code here:
-
-        int i;
-        comboClientesEliminar.removeAllItems();
-        
-        comunaSeleccionada = 0;
-        
-        if (regionSeleccionada > 0){
-            if(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() > 0){
-                for(i = 0 ; i < regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).cantidadClientes() ; i++){
-                    comboClientesEliminar.addItem(regiones.get(regionSeleccionada).getComuna(comunaSeleccionada).getCliente(i).getNombre());
-                }
-            } else {
-                comboClientesEliminar.addItem("...");
-            }               
-        } else {
-            comboClientesEliminar.addItem("...");
-        }
-
-    }//GEN-LAST:event_comboComunasEliminarActionPerformed
-
-    private void comboClientesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClientesEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboClientesEliminarActionPerformed
-
     private void botonEditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarDatosActionPerformed
         // TODO add your handling code here:
         ventanaEditarDatos.setVisible(true);
@@ -1347,6 +1303,27 @@ public class PantallaIngreso extends javax.swing.JFrame {
         botonCerrarSesion.doClick();
     }//GEN-LAST:event_botonCancelarSuscripcionActionPerformed
 
+    private void fieldRutEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldRutEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldRutEliminarActionPerformed
+
+    private void botonEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarClienteActionPerformed
+        // TODO add your handling code here:
+        
+        Cliente eliminado = buscarCliente(fieldRutEliminar.getText(), regiones);
+        
+        if (eliminado == null){
+            labelRutNoRegistrado.setText("Rut no registrado");
+        } else {
+            popUp(eliminado.getNombre() + "eliminad@ correctamente");
+            
+            frameEliminarCliente.dispose();
+            
+            regiones.get(eliminado.getRegion()).getComuna(eliminado.getComuna()).
+                    eliminarCliente(eliminado.getRut());
+        }
+    }//GEN-LAST:event_botonEliminarClienteActionPerformed
+
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
@@ -1419,16 +1396,14 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JButton botonRegistrarClienteNuevo;
     private javax.swing.JButton botonVentanaEliminarCliente;
     private javax.swing.JComboBox<String> comboCambiarPlan;
-    private javax.swing.JComboBox<String> comboClientesEliminar;
     private javax.swing.JComboBox<String> comboComunas;
-    private javax.swing.JComboBox<String> comboComunasEliminar;
     private javax.swing.JComboBox<String> comboListaPlanes;
     private javax.swing.JComboBox<String> comboNuevaComuna;
     private javax.swing.JComboBox<String> comboNuevaRegion;
     private javax.swing.JComboBox<String> comboRegiones;
-    private javax.swing.JComboBox<String> comboRegionesEliminar;
     private javax.swing.JTextField fieldNuevaDireccion;
     private javax.swing.JTextField fieldNuevoNombre;
+    private javax.swing.JTextField fieldRutEliminar;
     private javax.swing.JFrame frameCabiarPlan;
     private javax.swing.JFrame frameEliminarCliente;
     private javax.swing.JFrame frameIngresoDatos;
@@ -1445,6 +1420,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1464,6 +1440,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel labelPopUp;
     private javax.swing.JLabel labelRegionCLiente;
     private javax.swing.JLabel labelRutCLiente;
+    private javax.swing.JLabel labelRutNoRegistrado;
     private javax.swing.JPanel panelAdmin;
     private javax.swing.JPanel panelCliente;
     private javax.swing.JPanel panelIngresoRut;
