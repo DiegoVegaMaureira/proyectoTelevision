@@ -257,7 +257,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
         panelAdmin = new javax.swing.JPanel();
         botonAgregarCliente = new javax.swing.JButton();
         botonVentanaEliminarCliente = new javax.swing.JButton();
-        botonEditarCliente = new javax.swing.JButton();
         botonListaCliente = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         labelNombreAdmin = new javax.swing.JLabel();
@@ -823,13 +822,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
             }
         });
 
-        botonEditarCliente.setText("Editar Cliente");
-        botonEditarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarClienteActionPerformed(evt);
-            }
-        });
-
         botonListaCliente.setText("Lista Clientes");
         botonListaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -855,7 +847,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelNombreAdmin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         botonCerrarSesion.setText("Cerrar Sesion");
@@ -876,8 +868,7 @@ public class PantallaIngreso extends javax.swing.JFrame {
                         .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonVentanaEliminarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botonAgregarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonListaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonEditarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(botonListaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
@@ -889,14 +880,12 @@ public class PantallaIngreso extends javax.swing.JFrame {
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdminLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelAdminLayout.createSequentialGroup()
                         .addComponent(botonAgregarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonVentanaEliminarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEditarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonListaCliente)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
@@ -1177,11 +1166,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
         panelListaClientes.setEditable(false);
     }//GEN-LAST:event_botonListaClienteActionPerformed
 
-    private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_botonEditarClienteActionPerformed
-
     private void listenerCerrarVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_listenerCerrarVentana
         try {
             // TODO add your handling code here:
@@ -1389,7 +1373,6 @@ public class PantallaIngreso extends javax.swing.JFrame {
     private javax.swing.JButton botonCerrarPopUp;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonCerrarSesionCliente;
-    private javax.swing.JButton botonEditarCliente;
     private javax.swing.JButton botonEditarDatos;
     private javax.swing.JButton botonEliminarCliente;
     private javax.swing.JButton botonListaCliente;
